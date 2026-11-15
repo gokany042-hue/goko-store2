@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block content %}
+<h1>Sepetim</h1>
+{% if products %}
+{% for p, qty in products %}<div class="line cartline"><div><b>{{ p.name }}</b><p>{{ qty }} adet · {{ '%.2f'|format(p.price * qty) }} TL</p></div>
+<form method="post" action="{{ url_for('cart_remove',product_id=p.id) }}"><button class="danger">Kaldır</button></form></div>{% endfor %}
+<div class="panel"><h2>Toplam: {{ '%.2f'|format(total) }} TL</h2>
+{% if current_user.is_authenticated %}<a class="button" href="{{ url_for('checkout') }}">Siparişi tamamla</a>
+{% else %}<p>Sipariş vermek için giriş yapmalısın.</p><a class="button" href="{{ url_for('login') }}">Giriş yap</a>{% endif %}</div>
+{% else %}<p>Sepetin şu anda boş.</p><a class="button" href="{{ url_for('index') }}">Alışverişe dön</a>{% endif %}
+{% endblock %}

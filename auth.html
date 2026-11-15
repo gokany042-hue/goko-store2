@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block content %}
+<div class="panel narrow"><h1>{% if mode == 'register' %}Hesap oluştur{% else %}Giriş yap{% endif %}</h1>
+<form method="post">
+<label>Kullanıcı adı</label><input name="username" minlength="3" maxlength="40" autocomplete="username" required>
+<label>Şifre</label><input name="password" type="password" minlength="8" autocomplete="{% if mode == 'register' %}new-password{% else %}current-password{% endif %}" required>
+<button class="wide">{% if mode == 'register' %}Kayıt ol{% else %}Giriş yap{% endif %}</button>
+</form>
+<p>{% if mode == 'register' %}Hesabın var mı? <a href="{{ url_for('login') }}">Giriş yap</a>{% else %}Hesabın yok mu? <a href="{{ url_for('register') }}">Kayıt ol</a>{% endif %}</p></div>
+{% endblock %}

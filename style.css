@@ -1,0 +1,26 @@
+:root{--bg:#090711;--panel:#151122;--panel2:#1d1730;--purple:#9b5cff;--pink:#d34bff;--text:#f5f1ff;--muted:#b6abc9;--line:#34284b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#21123a 0,#090711 48%);color:var(--text);font:16px system-ui,Arial;min-height:100vh}
+header{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px max(5%,calc((100% - 1180px)/2));border-bottom:1px solid var(--line);background:#0b0813ef;position:sticky;top:0;z-index:4;flex-wrap:wrap}
+.brand{font-weight:950;letter-spacing:2px;font-size:23px;color:white;text-decoration:none}.brand span{color:var(--pink)}nav{display:flex;gap:16px;flex-wrap:wrap}
+a{color:#d7baff;text-decoration:none}nav a{color:var(--text);font-size:14px}nav a:hover,a:hover{color:var(--pink)}
+main{max-width:1180px;margin:34px auto;padding:0 20px;min-height:72vh}footer{text-align:center;color:var(--muted);padding:28px;border-top:1px solid var(--line)}
+h1{font-size:clamp(28px,5vw,44px);margin:8px 0 18px}h2{margin-top:34px}.hero{padding:55px 32px;border:1px solid #50306e;border-radius:24px;background:linear-gradient(120deg,#211137,#11101d 70%);margin-bottom:34px}
+.hero h1{font-size:clamp(40px,8vw,68px);margin:4px 0}.hero p{color:var(--muted)}.eyebrow{letter-spacing:5px;color:#d58cff!important}
+.search{display:flex;max-width:550px;gap:8px;margin-top:24px}.search input{flex:1}
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}.product,.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.product img,.placeholder{width:100%;height:190px;object-fit:cover;background:#241936}.placeholder{display:grid;place-items:center;font-size:32px;font-weight:900;color:#9b5cff}
+.pad{padding:16px}.pad h3{margin:0 0 8px}.pad p{color:var(--muted);min-height:42px}.pad strong{font-size:20px;color:#e2bdff}.pad form{margin-top:14px}
+.panel{padding:24px;margin:18px 0}.narrow{max-width:560px;margin:40px auto}.wide{width:100%;margin-top:18px}
+label{display:block;margin:14px 0 6px;color:#d7cbe8}input,textarea,select{width:100%;background:#0c0914;color:white;border:1px solid #49365f;border-radius:10px;padding:12px;font:inherit;min-width:0}
+input[type=checkbox]{width:auto}label.check{display:flex;align-items:center;gap:8px}textarea{min-height:80px;resize:vertical}
+button,.button{display:inline-block;background:linear-gradient(100deg,var(--purple),var(--pink));border:0;border-radius:10px;padding:11px 17px;color:white;font-weight:750;cursor:pointer;font:inherit;text-decoration:none}
+button:hover,.button:hover{filter:brightness(1.12);color:white}.danger{background:#7f294d}
+.flash{padding:12px 16px;border-radius:10px;margin:12px 0;background:#28203b}.flash.error{border:1px solid #a33d65}.flash.success{border:1px solid #487e69}
+.line,.adminrow,.order{display:flex;align-items:center;gap:12px;justify-content:space-between;background:var(--panel);border:1px solid var(--line);padding:14px;border-radius:12px;margin:10px 0;flex-wrap:wrap}
+.line span{color:var(--muted)}.adminrow{align-items:flex-start}.adminrow>form:first-child{display:grid;grid-template-columns:1.1fr 1.5fr .7fr 1.5fr auto auto;gap:8px;flex:1;min-width:0}
+.adminrow>form:last-child{margin-left:auto}.inline,.send{display:flex;gap:10px}.inline input{max-width:220px}.order{display:block}.order p{color:var(--muted)}
+.order form{display:flex;gap:8px}.order select{max-width:240px}.chat{background:#100c1a;border:1px solid var(--line);padding:16px;border-radius:14px;max-width:800px}
+.bubble{padding:12px 15px;border-radius:14px;margin:10px 0;max-width:80%;background:#28203b}.bubble.mine{margin-left:auto;background:#43245f}
+.bubble p{margin:5px 0;white-space:pre-wrap}.bubble small{color:#c3b4d4}.result{margin-top:20px;padding:18px;border:1px solid var(--purple);border-radius:12px}
+.adminform{max-width:700px}.success-text{color:#8ee0b5}
+@media(max-width:700px){header{position:static}nav{gap:11px}.hero{padding:32px 20px}.adminrow>form:first-child{grid-template-columns:1fr 1fr}.adminrow>form:first-child input{width:100%}.order form,.send{flex-direction:column}.bubble{max-width:95%}main{padding:0 14px;margin-top:20px}.inline{flex-wrap:wrap}.inline input{max-width:none}.adminrow>form:first-child{width:100%}}

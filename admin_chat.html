@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block content %}
+<h1>{{ user.username }} ile destek</h1><p><a href="{{ url_for('admin_support') }}">← Mesaj listesi</a></p>
+<div class="chat">
+{% for m in messages %}<div class="bubble {% if m.sender_admin %}mine{% endif %}">
+<small>{% if m.sender_admin %}Yönetici{% else %}{{ user.username }}{% endif %} · {{ m.created_at.strftime('%d.%m.%Y %H:%M') }}</small><p>{{ m.message }}</p></div>
+{% else %}<p>Henüz mesaj yok.</p>{% endfor %}
+<form method="post" class="send"><textarea name="message" maxlength="2000" placeholder="Yanıtını yaz..." required></textarea><button>Yanıt gönder</button></form>
+</div>{% endblock %}

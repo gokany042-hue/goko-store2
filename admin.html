@@ -1,0 +1,25 @@
+{% extends "base.html" %}{% block content %}
+<h1>Yönetim paneli</h1><p><a href="{{ url_for('admin_support') }}">Destek mesajlarını aç →</a></p>
+<div class="panel"><h2>Ürün ekle / düzenle</h2><form method="post" action="{{ url_for('product_save') }}" class="adminform">
+<input type="hidden" name="id"><label>Ürün adı</label><input name="name" required>
+<label>Açıklama</label><textarea name="description"></textarea><label>Fiyat (TL)</label>
+<input name="price" type="number" min="0" step="0.01" required><label>Görsel HTTPS URL</label>
+<input name="image" placeholder="https://..."><label class="check"><input type="checkbox" name="active" checked> Yayında</label><button>Ürün ekle</button></form></div>
+<h2>Mevcut ürünler</h2>
+{% for p in products %}<div class="adminrow">
+<form method="post" action="{{ url_for('product_save') }}">
+<input type="hidden" name="id" value="{{ p.id }}"><input name="name" value="{{ p.name }}" required>
+<input name="description" value="{{ p.description }}"><input name="price" type="number" step=".01" value="{{ p.price }}">
+<input name="image" value="{{ p.image }}" placeholder="Görsel URL"><label class="check"><input type="checkbox" name="active" {% if p.active %}checked{% endif %}> Yayında</label><button>Kaydet</button></form>
+<form method="post" action="{{ url_for('product_delete',pid=p.id) }}" onsubmit="return confirm('Bu ürün silinsin mi?')"><button class="danger">Sil</button></form>
+</div>{% else %}<p>Ürün yok.</p>{% endfor %}
+<h2>Kupon oluştur</h2><form method="post" action="{{ url_for('coupon_add') }}" class="inline">
+<input name="code" placeholder="Kupon kodu" required><input name="percent" type="number" min="1" max="90" value="10"><button>Ekle</button></form>
+{% for c in coupons %}<div class="line"><b>{{ c.code }}</b><span>%{{ c.percent }}</span>
+<form method="post" action="{{ url_for('coupon_delete',cid=c.id) }}"><button class="danger">Sil</button></form></div>{% endfor %}
+<h2>Son siparişler</h2>
+{% for o in orders %}<div class="order"><b>{{ o.code }}</b> · {{ o.customer_name }} · {{ o.phone }} · {{ '%.2f'|format(o.total) }} TL
+<p>{{ o.items }}</p><form method="post" action="{{ url_for('order_update',oid=o.id) }}">
+<select name="status">{% for s in ['Sipariş alındı','Hazırlanıyor','Kargoya verildi','Teslim edildi','İptal edildi'] %}
+<option {% if o.status==s %}selected{% endif %}>{{ s }}</option>{% endfor %}</select><button>Durumu güncelle</button></form></div>
+{% else %}<p>Henüz sipariş yok.</p>{% endfor %}{% endblock %}

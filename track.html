@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block content %}
+<div class="panel narrow"><h1>Sipariş takibi</h1>
+<form method="get"><label>Sipariş takip kodu</label><input name="code" value="{{ code }}" placeholder="GOKO-XXXXXXX" required><button class="wide">Sorgula</button></form>
+{% if code and order %}<div class="result"><h2>{{ order.code }}</h2><p><b>Durum:</b> {{ order.status }}</p>
+<p><b>Alıcı:</b> {{ order.customer_name }}</p><p><b>Ürünler:</b> {{ order.items }}</p>
+<p><b>Toplam:</b> {{ '%.2f'|format(order.total) }} TL</p></div>
+{% elif code %}<p class="flash error">Bu kodla eşleşen sipariş bulunamadı.</p>{% endif %}
+</div>{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% block content %}
+<div class="panel narrow"><h1>Siparişi tamamla</h1>
+<h2>Ürünler</h2>{% for p, qty in lines %}<p>{{ p.name }} × {{ qty }} — {{ '%.2f'|format(p.price * qty) }} TL</p>{% endfor %}
+<form method="get" class="inline"><input name="coupon" value="{{ coupon_code }}" placeholder="Kupon kodu"><button>Kuponu uygula</button></form>
+{% if discount %}<p class="success-text">%{{ discount }} indirim uygulandı.</p>{% endif %}
+<h2>Ödenecek: {{ '%.2f'|format(total) }} TL</h2>
+<form method="post"><input type="hidden" name="coupon" value="{{ coupon_code }}">
+<label>Ad soyad</label><input name="name" required>
+<label>Telefon</label><input name="phone" type="tel" required>
+<label>Teslimat adresi</label><textarea name="address" placeholder="Adresini yaz"></textarea>
+<button class="wide">Siparişi oluştur</button></form></div>
+{% endblock %}

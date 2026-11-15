@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block content %}
+<h1>Canlı destek</h1><div class="chat">
+{% for m in messages %}<div class="bubble {% if not m.sender_admin %}mine{% endif %}">
+<small>{% if m.sender_admin %}Destek ekibi{% else %}Sen{% endif %} · {{ m.created_at.strftime('%d.%m.%Y %H:%M') }}</small><p>{{ m.message }}</p></div>
+{% else %}<p>Henüz mesaj yok. Bize mesaj gönderebilirsin.</p>{% endfor %}
+<form method="post" class="send"><textarea name="message" placeholder="Mesajını yaz..." maxlength="2000" required></textarea><button>Gönder</button></form>
+</div>{% endblock %}

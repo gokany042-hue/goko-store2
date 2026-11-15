@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block content %}
+<section class="hero"><p class="eyebrow">GÖKØ STORE</p><h1>Tarzını keşfet.</h1><p>Aradığın ürünler tek yerde.</p>
+<form class="search" method="get"><input name="q" value="{{ q }}" placeholder="Ürün ara..."><button>Ara</button></form></section>
+<h2>Ürünler</h2><div class="products">{% for p in products %}<article class="product">
+{% if p.image %}<img src="{{ p.image }}" alt="{{ p.name }}" onerror="this.style.display='none'">{% else %}<div class="placeholder">GÖKØ</div>{% endif %}
+<div class="pad"><h3>{{ p.name }}</h3><p>{{ p.description }}</p><strong>{{ '%.2f'|format(p.price) }} TL</strong>
+<form method="post" action="{{ url_for('cart_add',product_id=p.id) }}"><button>Sepete ekle</button></form></div></article>{% else %}<p>Henüz ürün eklenmemiş. Yönetici panelinden ürün ekleyebilirsin.</p>{% endfor %}</div>{% endblock %}
